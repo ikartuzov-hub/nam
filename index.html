@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nAm · Novos Apoios da Madeira</title>
+<link rel="icon" type="image/svg+xml" href="nam-icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1626; --ink:#EAF1FB; --muted:#7FA6D9; --accent:#4C8DFF;
+    --line:#1C3252; --card:#10203A; --btn:#132646;
+  }
+  :root[data-theme="light"]{
+    --bg:#F2F6FB; --ink:#0A2340; --muted:#5B7395; --accent:#1D5FD6;
+    --line:#D9E4F2; --card:#FFFFFF; --btn:#E8EFF9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px}
+
+  .brandmark{position:fixed;top:13px;left:16px;width:26px;height:26px;z-index:30}
+  @keyframes markIn{
+    0%{transform:translate(calc(50vw - 29px), calc(45vh - 26px)) scale(8);opacity:0}
+    18%{opacity:1}
+    62%{transform:translate(calc(50vw - 29px), calc(45vh - 26px)) scale(8)}
+    100%{transform:translate(0,0) scale(1)}
+  }
+  .brandmark.reveal{animation:markIn 2.6s cubic-bezier(.65,0,.25,1) both}
+  @media(prefers-reduced-motion:reduce){.brandmark.reveal{animation:none}}
+
+  .topbar{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:12px 16px}
+  .langs{display:flex;gap:4px}
+  .lang,.theme{border:1px solid var(--line);background:transparent;color:var(--muted);
+    font-family:inherit;font-size:13px;cursor:pointer;border-radius:999px;padding:5px 11px;transition:.15s}
+  .lang.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+  .lang:hover,.theme:hover{border-color:var(--accent);color:var(--ink)}
+  .theme{width:34px;height:30px;padding:0;font-size:15px}
+
+  .counter{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+    padding:10px 0;text-align:center;display:none}
+  .counter.on{display:block}
+  .counter .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .counter .val{font-family:"Fraunces",serif;font-size:clamp(22px,5vw,30px);font-weight:600;color:var(--accent)}
+
+  .screen{display:none;padding:36px 0 60px}
+  .screen.on{display:block}
+  .kicker{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px}
+  h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(28px,6vw,42px);line-height:1.12;letter-spacing:-.4px}
+  .sub{margin-top:16px;font-size:clamp(15px,2.2vw,18px);color:var(--muted);max-width:46ch}
+  .primary{display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:var(--accent);color:#fff;
+    border:none;cursor:pointer;text-decoration:none;font-family:inherit;font-weight:600;font-size:16px;
+    padding:14px 26px;border-radius:999px;transition:.15s}
+  .primary:hover{transform:translateY(-1px)}
+
+  .qnum{font-size:13px;color:var(--muted);margin-bottom:10px}
+  h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,4.6vw,30px);line-height:1.2}
+  .opts{display:grid;gap:12px;margin-top:24px}
+  .opt{background:var(--btn);border:1px solid var(--line);color:var(--ink);font-family:inherit;
+    font-size:16px;text-align:left;padding:16px 18px;border-radius:14px;cursor:pointer;transition:.15s}
+  .opt:hover{border-color:var(--accent)}
+  .back{background:none;border:none;color:var(--muted);font-family:inherit;font-size:14px;
+    cursor:pointer;margin-top:22px;padding:4px 0}
+  .back:hover{color:var(--ink)}
+
+  .total{font-family:"Fraunces",serif;font-size:clamp(34px,8vw,54px);font-weight:600;color:var(--accent);margin-top:10px}
+  .cards{display:grid;gap:12px;margin-top:26px}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .pcard h3{font-size:16px;font-weight:600}
+  .pcard .rng{font-family:"Fraunces",serif;color:var(--accent);font-weight:600;font-size:17px;margin:4px 0 5px}
+  .pcard p{font-size:14px;color:var(--muted)}
+  .chip{display:inline-block;font-size:12px;border:1px solid var(--line);color:var(--muted);
+    border-radius:999px;padding:2px 10px;margin-top:9px}
+  .chip.open{border-color:var(--accent);color:var(--accent)}
+  .ctaBlock{margin-top:34px;text-align:center;border-top:1px solid var(--line);padding-top:28px}
+  .ctaBlock .t{font-family:"Fraunces",serif;font-size:20px;font-weight:500}
+  .ctaSub{margin-top:12px;font-size:14px;color:var(--muted)}
+  .disc{margin-top:30px;font-size:12px;color:var(--muted)}
+  footer{padding:22px 0 40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:20px}
+  footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg class="brandmark" id="mark" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="nAm">
+  <path d="M30 72 L50 16 L70 72"/>
+  <path d="M37 52 Q43.5 46 50 52 Q56.5 58 63 52"/>
+  <path d="M15 88 Q28 82 39 88 Q50 94 61 88 Q72 82 85 88"/>
+</svg>
+
+<div class="topbar">
+  <div class="langs" id="langs"></div>
+  <button class="theme" id="themeBtn" aria-label="Tema">☾</button>
+</div>
+
+<div class="counter" id="counter">
+  <div class="lbl" data-ui="counterLabel"></div>
+  <div class="val" id="counterVal">€0</div>
+</div>
+
+<main class="wrap">
+  <section class="screen on" id="scr-hero">
+    <div class="kicker" data-ui="kicker"></div>
+    <h1 data-ui="heroTitle"></h1>
+    <p class="sub" data-ui="heroSub"></p>
+    <button class="primary" id="startBtn" data-ui="start"></button>
+  </section>
+
+  <section class="screen" id="scr-q">
+    <div class="qnum" id="qnum"></div>
+    <h2 id="qtext"></h2>
+    <div class="opts" id="opts"></div>
+    <button class="back" id="backBtn" data-ui="back"></button>
+  </section>
+
+  <section class="screen" id="scr-result">
+    <div class="kicker" data-ui="resultTitle"></div>
+    <div class="total" id="total"></div>
+    <p class="sub" data-ui="resultSub"></p>
+    <div class="cards" id="cards"></div>
+    <div class="ctaBlock">
+      <div class="t" data-ui="ctaTitle"></div>
+      <a class="primary" id="ctaBtn" target="_blank" rel="noopener" data-ui="cta"></a>
+      <p class="ctaSub" data-ui="ctaSub"></p>
+      <button class="back" id="restartBtn" data-ui="restart"></button>
+    </div>
+    <p class="disc" data-ui="disclaimer"></p>
+  </section>
+</main>
+
+<footer class="wrap" id="foot"></footer>
+
+<script>
+(function(){
+  var LANGS=["pt","ru","en"], UI={}, DATA=null, lang="pt";
+  var answers={}, order=[], step=0;
+
+  var params=new URLSearchParams(location.search);
+  var pl=params.get("lang"); var sl=null;
+  try{sl=localStorage.getItem("nam-lang")}catch(e){}
+  if(LANGS.indexOf(pl)>=0) lang=pl; else if(LANGS.indexOf(sl)>=0) lang=sl;
+
+  var pt=params.get("theme"); var st=null;
+  try{st=localStorage.getItem("nam-theme")}catch(e){}
+  var theme=(pt==="light"||pt==="night")?pt:(st==="light"||st==="night")?st:"night";
+  applyTheme(theme);
+
+  function applyTheme(t){
+    theme=t;
+    if(t==="light") document.documentElement.setAttribute("data-theme","light");
+    else document.documentElement.removeAttribute("data-theme");
+    var b=document.getElementById("themeBtn"); if(b) b.textContent=(t==="light")?"☀":"☾";
+    try{localStorage.setItem("nam-theme",t)}catch(e){}
+  }
+  document.getElementById("themeBtn").onclick=function(){applyTheme(theme==="light"?"night":"light")};
+
+  function q(url){var s="?lang="+lang+"&theme="+theme;return url+(url.indexOf("?")>=0?"&":"?")+s.slice(1)}
+  function T(k){return UI[k]!=null?UI[k]:k}
+  function L(obj){return obj&&(obj[lang]!=null?obj[lang]:obj.pt)}
+  function eur(n){return "€"+n.toLocaleString(lang==="ru"?"ru-RU":lang==="en"?"en-GB":"pt-PT")}
+
+  function fill(){
+    document.documentElement.lang=lang;
+    document.documentElement.dir=UI.dir||"ltr";
+    document.querySelectorAll("[data-ui]").forEach(function(el){
+      el.textContent=T(el.getAttribute("data-ui"));
+    });
+    var lb=document.getElementById("langs"); lb.innerHTML="";
+    LANGS.forEach(function(l){
+      var b=document.createElement("button");
+      b.className="lang"+(l===lang?" active":""); b.textContent=l.toUpperCase();
+      b.onclick=function(){setLang(l)};
+      lb.appendChild(b);
+    });
+    var f=document.getElementById("foot");
+    f.innerHTML='© <a href="'+DATA.config.linkedinUrl+'" target="_blank" rel="noopener">Igor Kartuzov</a> · <a href="'+q(DATA.config.hubUrl)+'" target="_blank" rel="noopener">SeedWave</a>';
+    document.getElementById("ctaBtn").href=DATA.config.ctaUrl;
+  }
+
+  function setLang(l){
+    lang=l; try{localStorage.setItem("nam-lang",l)}catch(e){}
+    loadUI(function(){fill(); if(current==="q") renderQ(); if(current==="result") renderResult();});
+  }
+
+  function loadUI(cb){
+    fetch("ui."+lang+".json").then(function(r){return r.json()}).then(function(j){UI=j;cb()})
+      .catch(function(){UI={};cb()});
+  }
+
+  var current="hero";
+  function show(id){
+    current=id;
+    ["hero","q","result"].forEach(function(s){
+      document.getElementById("scr-"+s).classList.toggle("on",s===id);
+    });
+    document.getElementById("counter").classList.toggle("on",id!=="hero");
+    window.scrollTo(0,0);
+  }
+
+  function visibleQuestions(){
+    return DATA.questions.filter(function(qq){
+      if(!qq.showIf) return true;
+      return Object.keys(qq.showIf).every(function(k){return answers[k]===qq.showIf[k]});
+    });
+  }
+
+  function matched(){
+    return DATA.programs.filter(function(p){
+      return Object.keys(p.match).every(function(k){
+        var need=p.match[k];
+        if(Array.isArray(need)) return need.indexOf(answers[k])>=0;
+        return answers[k]===need;
+      });
+    });
+  }
+
+  function updateCounter(){
+    var ms=matched(), lo=0, hi=0;
+    ms.forEach(function(p){lo+=p.min;hi+=p.max});
+    document.getElementById("counterVal").textContent=
+      hi>0?(eur(lo)+" – "+eur(hi)):eur(0);
+  }
+
+  function renderQ(){
+    order=visibleQuestions();
+    if(step>=order.length){renderResult();show("result");return}
+    var qq=order[step];
+    document.getElementById("qnum").textContent=(step+1)+" "+T("progressOf")+" "+order.length;
+    document.getElementById("qtext").textContent=L(qq.text);
+    var box=document.getElementById("opts"); box.innerHTML="";
+    qq.options.forEach(function(o){
+      var b=document.createElement("button");
+      b.className="opt"; b.textContent=L(o.label);
+      b.onclick=function(){
+        answers[qq.id]=o.v;
+        order=visibleQuestions();
+        updateCounter();
+        step++;
+        if(step>=order.length){renderResult();show("result")}else renderQ();
+      };
+      box.appendChild(b);
+    });
+    updateCounter();
+  }
+
+  function statusText(s){
+    return s==="open"?T("statusOpen"):s==="window"?T("statusWindow"):T("statusAviso");
+  }
+
+  function renderResult(){
+    var ms=matched(), lo=0, hi=0;
+    ms.forEach(function(p){lo+=p.min;hi+=p.max});
+    var tt=document.getElementById("total");
+    var cards=document.getElementById("cards"); cards.innerHTML="";
+    if(ms.length===0){
+      tt.textContent=T("noneTitle");
+      var p=document.createElement("p"); p.className="sub"; p.textContent=T("noneSub");
+      cards.appendChild(p);
+    } else {
+      tt.textContent=eur(lo)+" – "+eur(hi);
+      ms.forEach(function(pr){
+        var d=document.createElement("div"); d.className="pcard";
+        var h=document.createElement("h3"); h.textContent=L(pr.name); d.appendChild(h);
+        var r=document.createElement("div"); r.className="rng";
+        r.textContent=eur(pr.min)+" – "+eur(pr.max); d.appendChild(r);
+        var ds=document.createElement("p"); ds.textContent=L(pr.desc); d.appendChild(ds);
+        var c=document.createElement("span"); c.className="chip"+(pr.status==="open"?" open":"");
+        c.textContent=statusText(pr.status); d.appendChild(c);
+        cards.appendChild(d);
+      });
+    }
+  }
+
+  document.getElementById("startBtn").onclick=function(){step=0;answers={};show("q");renderQ()};
+  document.getElementById("backBtn").onclick=function(){
+    if(step>0){step--; var qq=order[step]; delete answers[qq.id]; updateCounter(); renderQ();}
+    else show("hero");
+  };
+  document.getElementById("restartBtn").onclick=function(){step=0;answers={};updateCounter();show("hero")};
+
+  fetch("subsidies.json").then(function(r){return r.json()}).then(function(j){
+    DATA=j;
+    loadUI(function(){
+      fill();
+      var m=document.getElementById("mark");
+      m.classList.add("reveal");
+    });
+  });
+})();
+</script>
+</body>
+</html>

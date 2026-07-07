@@ -1,0 +1,130 @@
+{
+  "config": {
+    "ctaUrl": "https://t.me/SeedWaveBot",
+    "hubUrl": "https://ikartuzov-hub.github.io/seedwave-catalog/hub/",
+    "linkedinUrl": "https://www.linkedin.com/in/igor-kartuzov/",
+    "updated": "2026-07-07"
+  },
+  "questions": [
+    {
+      "id": "biz",
+      "text": { "pt": "O seu negócio na Madeira…", "ru": "Ваш бизнес на Мадейре…", "en": "Your business in Madeira…" },
+      "options": [
+        { "v": "yes", "label": { "pt": "Já existe (empresa ou ENI)", "ru": "Уже работает (фирма или ИП)", "en": "Already operating (company or sole trader)" } },
+        { "v": "plan", "label": { "pt": "Vou criar o meu negócio", "ru": "Планирую открыть своё дело", "en": "I plan to start one" } }
+      ]
+    },
+    {
+      "id": "age",
+      "showIf": { "biz": "yes" },
+      "text": { "pt": "A empresa tem mais de 2 anos?", "ru": "Фирме больше 2 лет?", "en": "Is the company older than 2 years?" },
+      "options": [
+        { "v": "yes", "label": { "pt": "Sim", "ru": "Да", "en": "Yes" } },
+        { "v": "no", "label": { "pt": "Não", "ru": "Нет", "en": "No" } }
+      ]
+    },
+    {
+      "id": "hiring",
+      "showIf": { "biz": "yes" },
+      "text": { "pt": "Vai contratar nos próximos meses?", "ru": "Планируете нанимать в ближайшие месяцы?", "en": "Hiring in the coming months?" },
+      "options": [
+        { "v": "yes", "label": { "pt": "Sim", "ru": "Да", "en": "Yes" } },
+        { "v": "no", "label": { "pt": "Não", "ru": "Нет", "en": "No" } }
+      ]
+    },
+    {
+      "id": "young",
+      "showIf": { "hiring": "yes" },
+      "text": { "pt": "O candidato pode ser jovem (até 35) com curso superior?", "ru": "Кандидат может быть моложе 35 с высшим образованием?", "en": "Could the hire be under 35 with a degree?" },
+      "options": [
+        { "v": "yes", "label": { "pt": "Sim, é possível", "ru": "Да, возможно", "en": "Yes, possibly" } },
+        { "v": "no", "label": { "pt": "Não", "ru": "Нет", "en": "No" } }
+      ]
+    },
+    {
+      "id": "costs",
+      "showIf": { "biz": "yes" },
+      "text": { "pt": "Renda + Segurança Social + energia: mais de €7 500 por ano?", "ru": "Аренда + Segurança Social + свет: больше €7 500 в год?", "en": "Rent + social security + energy: over €7,500 a year?" },
+      "options": [
+        { "v": "yes", "label": { "pt": "Sim", "ru": "Да", "en": "Yes" } },
+        { "v": "no", "label": { "pt": "Não", "ru": "Нет", "en": "No" } }
+      ]
+    },
+    {
+      "id": "sector",
+      "text": { "pt": "O seu setor?", "ru": "Ваш сектор?", "en": "Your sector?" },
+      "options": [
+        { "v": "food", "label": { "pt": "Restauração / comércio", "ru": "Ресторан / торговля", "en": "Food / retail" } },
+        { "v": "tourism", "label": { "pt": "Turismo / alojamento", "ru": "Туризм / размещение", "en": "Tourism / lodging" } },
+        { "v": "agro", "label": { "pt": "Agricultura", "ru": "Сельское хозяйство", "en": "Agriculture" } },
+        { "v": "other", "label": { "pt": "Serviços / outro", "ru": "Услуги / другое", "en": "Services / other" } }
+      ]
+    },
+    {
+      "id": "green",
+      "text": { "pt": "Interessa-lhe energia solar, baterias ou eficiência energética?", "ru": "Интересны солнце, батареи или энергоэффективность?", "en": "Interested in solar, batteries or energy efficiency?" },
+      "options": [
+        { "v": "yes", "label": { "pt": "Sim", "ru": "Да", "en": "Yes" } },
+        { "v": "no", "label": { "pt": "Ainda não", "ru": "Пока нет", "en": "Not yet" } }
+      ]
+    }
+  ],
+  "programs": [
+    {
+      "id": "pic",
+      "name": { "pt": "PIC — incentivo à contratação", "ru": "PIC — субсидия за найм", "en": "PIC — hiring incentive" },
+      "desc": { "pt": "Pagamento único por cada posto de trabalho criado com desempregado inscrito no IEM.", "ru": "Разовая выплата за каждое рабочее место для безработного из реестра IEM.", "en": "One-off payment per job created for an IEM-registered unemployed person." },
+      "min": 2100, "max": 10500, "status": "open",
+      "match": { "hiring": "yes" }
+    },
+    {
+      "id": "v35",
+      "name": { "pt": "Valorizar 35 — jovens qualificados", "ru": "Valorizar 35 — молодые специалисты", "en": "Valorizar 35 — qualified youth" },
+      "desc": { "pt": "Apoio ao empregador e ao próprio jovem contratado — dois apoios numa contratação.", "ru": "Платят и работодателю, и самому специалисту — два апойо за один найм.", "en": "Support for both the employer and the young hire — two grants per contract." },
+      "min": 5000, "max": 15000, "status": "open",
+      "match": { "hiring": "yes", "young": "yes" }
+    },
+    {
+      "id": "func",
+      "name": { "pt": "Funcionamento 2030 — custos gerais", "ru": "Funcionamento 2030 — компенсация расходов", "en": "Funcionamento 2030 — operating costs" },
+      "desc": { "pt": "Compensação de rendas, Segurança Social, energia e água já pagas pela empresa.", "ru": "Компенсация уже понесённых расходов: аренда, Segurança Social, свет, вода.", "en": "Compensation for rent, social security, energy and water already paid." },
+      "min": 5000, "max": 20000, "status": "window",
+      "match": { "age": "yes", "costs": "yes" }
+    },
+    {
+      "id": "nem",
+      "name": { "pt": "Energia — painéis, baterias, carregadores (nEm)", "ru": "Энергия — панели, батареи, зарядки (nEm)", "en": "Energy — solar, batteries, chargers (nEm)" },
+      "desc": { "pt": "Pacote de energia com subsídio, chave-na-mão — o nosso produto irmão nEm.", "ru": "Энергопакет с субсидией под ключ — наш продукт-собрат nEm.", "en": "Subsidised turnkey energy package — our sister product nEm." },
+      "min": 10000, "max": 25000, "status": "window",
+      "match": { "green": "yes" }
+    },
+    {
+      "id": "cpe",
+      "name": { "pt": "CPE / CRIEE — criação do próprio negócio", "ru": "CPE / CRIEE — открытие своего дела", "en": "CPE / CRIEE — start your own business" },
+      "desc": { "pt": "Apoio do IEM à criação de microempresas e postos de trabalho.", "ru": "Поддержка IEM при создании микропредприятия и рабочих мест.", "en": "IEM support for creating micro-enterprises and jobs." },
+      "min": 10000, "max": 35000, "status": "open",
+      "match": { "biz": "plan" }
+    },
+    {
+      "id": "agro",
+      "name": { "pt": "PEPAC — prémio jovens agricultores", "ru": "PEPAC — премия молодого фермера", "en": "PEPAC — young farmer premium" },
+      "desc": { "pt": "Prémio de instalação e investimento nas explorações agrícolas da RAM.", "ru": "Премия за установку и инвестиции в хозяйство на Мадейре.", "en": "Installation premium and farm investment support in Madeira." },
+      "min": 12000, "max": 35000, "status": "aviso",
+      "match": { "sector": "agro" }
+    },
+    {
+      "id": "tur",
+      "name": { "pt": "Turismo — Inovação 2030 / Crescer com o Turismo", "ru": "Туризм — Inovação 2030 / Crescer com o Turismo", "en": "Tourism — Inovação 2030 / Crescer com o Turismo" },
+      "desc": { "pt": "Investimento no setor do turismo com apoio a fundo perdido.", "ru": "Инвестиции в туризме с невозвратной поддержкой.", "en": "Tourism investment with non-refundable support." },
+      "min": 50000, "max": 200000, "status": "aviso",
+      "match": { "sector": "tourism", "age": "yes" }
+    },
+    {
+      "id": "inov",
+      "name": { "pt": "Inovação 2030 — investimento produtivo", "ru": "Inovação 2030 — производственные инвестиции", "en": "Inovação 2030 — productive investment" },
+      "desc": { "pt": "25–45% a fundo perdido para projetos de investimento e modernização.", "ru": "25–45% невозвратных на инвестпроекты и модернизацию.", "en": "25–45% non-refundable for investment and modernisation projects." },
+      "min": 50000, "max": 500000, "status": "aviso",
+      "match": { "age": "yes", "costs": "yes", "sector": ["food", "other"] }
+    }
+  ]
+}
