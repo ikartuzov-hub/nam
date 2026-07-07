@@ -330,6 +330,7 @@
 
   function renderResult(){
     var s=sums();
+    document.getElementById("ctaBtn").href=botLink();
     var tt=document.getElementById("total");
     var tb=document.getElementById("tierb");
     var cards=document.getElementById("cards"); cards.innerHTML="";
@@ -364,6 +365,19 @@
           cards.appendChild(d);
         });
     }
+  }
+
+  /* деп-линк бота: nam_{lang}_{профиль7}_{суммаА}_{суммаБ} */
+  function botLink(){
+    var ids=["biz","age","hiring","young","costs","sector","green"];
+    var code=ids.map(function(id){
+      var v=answers[id]; if(v==null) return "x";
+      if(id==="biz") return v==="yes"?"e":"p";
+      if(id==="sector") return {food:"f",tourism:"t",agro:"a",other:"o"}[v]||"x";
+      return v==="yes"?"y":"n";
+    }).join("");
+    var s=sums();
+    return DATA.config.ctaUrl+"?start=nam_"+lang+"_"+code+"_"+s.hi+"_"+s.bhi;
   }
 
   document.getElementById("startBtn").onclick=function(){step=0;answers={};show("q");renderQ()};
