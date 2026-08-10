@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ikartuzov-hub.github.io/nam/sitemap.xml
+Sitemap: https://nam.seedwave.pt/sitemap.xml

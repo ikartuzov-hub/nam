@@ -11,10 +11,11 @@
 <meta name="theme-color" content="#0B1626">
 <meta property="og:title" content="nAm — Tome o que é seu">
 <meta property="og:description" content="Quanto é que o Estado deve ao seu negócio na Madeira? 6 perguntas — e o seu número em euros. Apoios à contratação, custos, energia e criação do negócio.">
-<meta property="og:image" content="https://ikartuzov-hub.github.io/nam/og-image.png">
+<meta property="og:image" content="https://nam.seedwave.pt/og-image.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:url" content="https://ikartuzov-hub.github.io/nam/">
+<link rel="canonical" href="https://nam.seedwave.pt/">
+<meta property="og:url" content="https://nam.seedwave.pt/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -387,7 +388,7 @@
   };
   document.getElementById("restartBtn").onclick=function(){step=0;answers={};updateCounter();show("hero")};
   document.getElementById("shareBtn").onclick=function(){
-    var url="https://ikartuzov-hub.github.io/nam/?lang="+lang, text=T("shareText");
+    var url="https://nam.seedwave.pt/?lang="+lang, text=T("shareText");
     if(navigator.share){navigator.share({title:"nAm",text:text,url:url}).catch(function(){})}
     else{
       var full=text+" "+url, btn=this, old=T("shareBtn");
