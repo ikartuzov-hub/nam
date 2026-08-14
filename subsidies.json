@@ -3,7 +3,7 @@
     "ctaUrl": "https://t.me/SeedWaveBot",
     "hubUrl": "https://seedwave.pt/hub/",
     "linkedinUrl": "https://www.linkedin.com/in/igor-kartuzov/",
-    "updated": "2026-07-07"
+    "updated": "2026-08-14"
   },
   "questions": [
     {
@@ -87,15 +87,15 @@
     {
       "id": "func",
       "name": { "pt": "Funcionamento 2030 — custos gerais", "ru": "Funcionamento 2030 — компенсация расходов", "en": "Funcionamento 2030 — operating costs" },
-      "desc": { "pt": "Compensação de rendas, Segurança Social, energia e água já pagas pela empresa.", "ru": "Компенсация уже понесённых расходов: аренда, Segurança Social, свет, вода.", "en": "Compensation for rent, social security, energy and water already paid." },
-      "min": 5000, "max": 20000, "status": "window",
+      "desc": { "pt": "Compensação de rendas, Segurança Social, energia e água já pagas pela empresa. Janela fechada — avisamos quando abrir a próxima.", "ru": "Компенсация уже понесённых расходов: аренда, Segurança Social, свет, вода. Окно закрыто — сообщим, когда откроется следующее.", "en": "Compensation for rent, social security, energy and water already paid. Window closed — we flag the next one." },
+      "min": 5000, "max": 20000, "status": "aviso",
       "match": { "age": "yes", "costs": "yes" }
     },
     {
       "id": "nem",
       "name": { "pt": "Energia — painéis, baterias, carregadores (nEm)", "ru": "Энергия — панели, батареи, зарядки (nEm)", "en": "Energy — solar, batteries, chargers (nEm)" },
-      "desc": { "pt": "Pacote de energia com subsídio, chave-na-mão — o nosso produto irmão nEm.", "ru": "Энергопакет с субсидией под ключ — наш продукт-собрат nEm.", "en": "Subsidised turnkey energy package — our sister product nEm." },
-      "min": 10000, "max": 25000, "status": "window",
+      "desc": { "pt": "Pacote de energia chave-na-mão — o nosso produto irmão nEm. Aberto agora pelo SIEED (aviso M2030-2026-21): candidaturas até 10 de outubro de 2026, 17h00; despesa elegível mínima de 50.000 €.", "ru": "Энергопакет под ключ — наш продукт-собрат nEm. Сейчас открыт через SIEED (авизо M2030-2026-21): заявки до 10 октября 2026 года, 17:00; минимальный приемлемый расход 50 000 €.", "en": "Turnkey energy package — our sister product nEm. Open now through SIEED (notice M2030-2026-21): applications until 10 October 2026, 17:00; minimum eligible spend €50,000." },
+      "min": 50000, "max": 300000, "status": "open",
       "match": { "green": "yes" }
     },
     {
